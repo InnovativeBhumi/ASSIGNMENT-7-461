@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercise 01-02 Forest Panorama</title>
+    <script src="https://aframe.io/releases/1.7.1/aframe.min.js"></script>
+  </head>
+  <body>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const isLocalhost = ["localhost", "127.0.0.1", "[::1]"].includes(
+          location.hostname,
+        );
+        const forestSrc = isLocalhost
+          ? "http://localhost:8000/p01/IMAGES/Moving_Forest_1050_700.webp"
+          : "./IMAGES/Moving_Forest_1050_700.webp";
+
+        document.getElementById("forest").setAttribute("src", forestSrc);
+        document
+          .querySelector("a-assets")
+          .addEventListener("loaded", () => {
+            document
+              .getElementById("sky")
+              .setAttribute("material", "src: #forest");
+          });
+      });
+    </script>
+
+    <a-scene>
+      <a-assets>
+        <img id="forest" crossorigin="anonymous" alt="Forest panorama" />
+      </a-assets>
+
+      <a-sky id="sky" src="#forest"></a-sky>
+      <a-text
+        font="kelsonsans"
+        color="#ecfccb"
+        value="Exercise 01-02&#10;Forest panorama using a public-domain image"
+        width="6"
+        position="-2.3 1.8 -3"
+      ></a-text>
+      <a-ring
+        position="0 1.2 -4"
+        radius-inner="0.2"
+        radius-outer="0.32"
+        color="#d9f99d"
+      ></a-ring>
+    </a-scene>
+  </body>
+</html>

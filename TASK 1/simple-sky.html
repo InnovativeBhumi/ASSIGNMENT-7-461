@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercise 01-01 Simple Sky</title>
+    <script src="https://aframe.io/releases/1.7.1/aframe.min.js"></script>
+  </head>
+  <body>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const isLocalhost = ["localhost", "127.0.0.1", "[::1]"].includes(
+          location.hostname,
+        );
+        const nebulaSrc = isLocalhost
+          ? "http://localhost:8000/p01/IMAGES/heic2007a.jpg"
+          : "./IMAGES/heic2007a.jpg";
+
+        document.getElementById("nebula").setAttribute("src", nebulaSrc);
+        document
+          .querySelector("a-assets")
+          .addEventListener("loaded", () => {
+            document
+              .getElementById("sky")
+              .setAttribute("material", "src: #nebula");
+          });
+      });
+    </script>
+
+    <a-scene>
+      <a-assets>
+        <img id="nebula" crossorigin="anonymous" alt="Nebula background" />
+      </a-assets>
+
+      <a-sky id="sky" src="#nebula"></a-sky>
+      <a-text
+        font="kelsonsans"
+        color="#ffffff"
+        value="hello Dr. park &#10;Exercise 01-01&#10;Bhumi Sehgal"
+        width="6"
+        position="-1.4 1.7 -3"
+      ></a-text>
+      <a-plane
+        position="0 0.45 -3.2"
+        width="4.6"
+        height="1.6"
+        color="#111827"
+        opacity="0.42"
+      ></a-plane>
+    </a-scene>
+  </body>
+</html>
